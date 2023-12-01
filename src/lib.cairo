@@ -12,7 +12,7 @@ mod L3Chain {
         chain: LegacyMap::<felt252, L3Block>,
     }
 
-    #[derive(Serde)]
+    #[derive(Drop, Serde)]
     struct L3Block {
         height: felt252,
         block_hash: Array<felt252>, 
