@@ -9,7 +9,7 @@ mod L3Chain {
 
     #[storage]
     struct Storage {
-        chain: Array<L3Block>,
+        chain: LegacyMap::<felt252, L3Block>,
     }
 
     #[derive(Serde)]
@@ -23,7 +23,7 @@ mod L3Chain {
     #[external(v0)]
     impl L3Chain of super::Ilayer3chain<ContractState>{
         fn upload_block(ref self: ContractState, block: L3Block) {
-            self.chain.write(block)
+            self.chain.write(block.height, block)
         }
     }
     
