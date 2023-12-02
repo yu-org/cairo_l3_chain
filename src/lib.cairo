@@ -7,11 +7,6 @@ trait Ilayer3chain<TContractState> {
 mod L3Chain {
     use array::ArrayTrait;
 
-    #[storage]
-    struct Storage {
-        chain: LegacyMap::<felt252, L3Block>,
-    }
-
     #[derive(Drop, Serde)]
     struct L3Block {
         height: felt252,
@@ -19,6 +14,12 @@ mod L3Chain {
         state_root: Array<felt252>,
         txns_root: Array<felt252>,
     }
+
+    #[storage]
+    struct Storage {
+        chain: LegacyMap::<felt252, L3Block>,
+    }
+    
 
     #[external(v0)]
     impl L3Chain of super::Ilayer3chain<ContractState>{
